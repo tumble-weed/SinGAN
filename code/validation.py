@@ -25,6 +25,8 @@ def validateSinGAN(data_loader, networks, stage, args, additional=None):
     z_rec = additional['z_rec']
 
     x_in = next(val_it)
+    if isinstance(x_in,list):
+        x_in = x_in[0]
     x_in = x_in.cuda(args.gpu, non_blocking=True)
     x_org = x_in
 
