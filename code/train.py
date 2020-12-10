@@ -43,7 +43,8 @@ def trainSinGAN(data_loader, networks, opts, stage, args, additional):
         z_rec[z_idx] = z_rec[z_idx].cuda(args.gpu, non_blocking=True)
 
     x_in = next(train_it)
-
+    if isinstance(x_in,list):
+        x_in = x_in[0]
     x_in = x_in.cuda(args.gpu, non_blocking=True)
     x_org = x_in
     x_in = F.interpolate(x_in, (args.size_list[stage], args.size_list[stage]), mode='bilinear', align_corners=True)
